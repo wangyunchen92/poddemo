@@ -80,7 +80,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = self.titles[indexPath.row];
     WMMenuViewStyle style = [self.stylesMap[key] integerValue];
-    
     WMCustomizedPageController *vc = [[WMCustomizedPageController alloc] init];
     vc.selectIndex = 0;
     vc.title = key;
