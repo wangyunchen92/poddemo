@@ -122,6 +122,8 @@ static NSInteger const kWMControllerCountUndefined = -1;
     _cachePolicy = cachePolicy;
     if (cachePolicy != WMPageControllerCachePolicyDisabled) {
         self.memCache.countLimit = _cachePolicy;
+    } if (cachePolicy == WMPageControllerCachePolicyHigh) {
+        self.memCache.countLimit = self.childViewControllers.count;
     }
 }
 
@@ -295,8 +297,8 @@ static NSInteger const kWMControllerCountUndefined = -1;
     for (int i = start; i <= end; i++) {
         // 如果已存在，不需要预加载
         if (![self.memCache objectForKey:@(i)] && !self.displayVC[@(i)]) {
-            [self wm_addViewControllerAtIndex:i];
-            [self wm_postAddToSuperViewNotificationWithIndex:i];
+                [self wm_addViewControllerAtIndex:i];
+                [self wm_postAddToSuperViewNotificationWithIndex:i];
         }
     }
     _selectIndex = (int)index;
@@ -315,6 +317,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
 }
 
 - (UIViewController * _Nonnull)initializeViewControllerAtIndex:(NSInteger)index {
+
     if ([self.dataSource respondsToSelector:@selector(pageController:viewControllerAtIndex:)]) {
         return [self.dataSource pageController:self viewControllerAtIndex:index];
     }
@@ -461,6 +464,7 @@ static NSInteger const kWMControllerCountUndefined = -1;
     menuView.progressViewIsNaughty = self.progressViewIsNaughty;
     menuView.progressViewCornerRadius = self.progressViewCornerRadius;
     menuView.showOnNavigationBar = self.showOnNavigationBar;
+
     if (self.titleFontName) {
         menuView.fontName = self.titleFontName;
     }
@@ -532,7 +536,6 @@ static NSInteger const kWMControllerCountUndefined = -1;
     [self.scrollView addSubview:viewController.view];
     [self willEnterController:viewController atIndex:index];
     [self.displayVC setObject:viewController forKey:@(index)];
-    
     [self wm_backToPositionIfNeeded:viewController atIndex:index];
 }
 

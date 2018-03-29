@@ -31,7 +31,8 @@ typedef NS_ENUM(NSInteger, WMPageControllerCachePolicy) {
 typedef NS_ENUM(NSUInteger, WMPageControllerPreloadPolicy) {
     WMPageControllerPreloadPolicyNever     = 0, // Never pre-load controller.
     WMPageControllerPreloadPolicyNeighbour = 1, // Pre-load the controller next to the current.
-    WMPageControllerPreloadPolicyNear      = 2  // Pre-load 2 controllers near the current.
+    WMPageControllerPreloadPolicyNear      = 2, // Pre-load 2 controllers near the current.
+    WMPageControllerPreloadPolicyHeight    = 3
 };
 
 NS_ASSUME_NONNULL_BEGIN

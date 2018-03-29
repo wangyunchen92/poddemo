@@ -41,11 +41,10 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.titleArray = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < 3; i++) {
+    for (NSInteger i = 0; i < 10; i++) {
         [self.titleArray addObject:[NSString stringWithFormat:@"LIST %ld",(long)i]];
     }
     [self reloadData];
-    
 }
 
 - (void)didReceiveMemoryWarning {

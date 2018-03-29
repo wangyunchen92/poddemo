@@ -86,6 +86,8 @@
     vc.title = key;
     vc.menuViewStyle = style;
     vc.automaticallyCalculatesItemWidths = YES;
+    vc.preloadPolicy = WMPageControllerPreloadPolicyNear;
+    vc.cachePolicy = WMPageControllerCachePolicyHigh;
     if ([key isEqualToString:@"WMMenuViewStyleNaughty"]) {
         vc.progressViewIsNaughty = YES;
         vc.progressWidth = 10;

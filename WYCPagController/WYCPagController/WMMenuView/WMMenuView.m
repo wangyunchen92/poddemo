@@ -354,6 +354,15 @@
     frame.origin.x += self.contentMargin;
     frame.size.width -= self.contentMargin * 2;
     self.scrollView.frame = frame;
+
+    CALayer *layer = [[CALayer alloc] init];
+    layer.frame = self.bounds;
+    layer.shadowColor = [UIColor blackColor].CGColor;
+    layer.shadowOpacity = 0.2;
+    layer.shadowOffset = CGSizeMake(0, 3);
+    layer.backgroundColor = [UIColor whiteColor].CGColor;
+    
+    [self.layer insertSublayer:layer atIndex:0];
     [self resetFramesFromIndex:0];
 }
 
